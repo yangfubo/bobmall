@@ -29,12 +29,12 @@
             <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
-
-        <javaModelGenerator targetPackage="com.bob.mall.model" targetProject="mall-mbg\src\main\java"/>
-
-        <sqlMapGenerator targetPackage="com.bob.mall.mapper" targetProject="mall-mbg\src\main\resources"/>
-
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bob.mall.mapper"
+        <!--指定生成model的路径-->
+        <javaModelGenerator targetPackage="com.bob.mall.admin.model" targetProject="mall-mbg\src\main\java"/>
+        <!--指定生成mapper.xml的路径-->
+        <sqlMapGenerator targetPackage="com.bob.mall.admin.mapper" targetProject="mall-mbg\src\main\resources"/>
+        <!--指定生成mapper接口的的路径-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bob.mall.admin.mapper"
                              targetProject="mall-mbg\src\main\java"/>
         <!--生成全部表tableName设为%-->
         <table tableName="%">
