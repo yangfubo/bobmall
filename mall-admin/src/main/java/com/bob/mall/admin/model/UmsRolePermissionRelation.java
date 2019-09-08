@@ -1,45 +1,41 @@
 package com.bob.mall.admin.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UmsRolePermissionRelation {
-    private Integer id;
+    /**
+     * 主键id
+     * 
+     */
+    @ApiModelProperty(value = "主键id")
+    private Long id;
 
-    private Integer roleId;
+    /**
+     * 角色id
+     * 
+     */
+    @ApiModelProperty(value = "角色id")
+    private Long roleId;
 
-    private Integer permissionId;
+    /**
+     * 权限id
+     * 
+     */
+    @ApiModelProperty(value = "权限id")
+    private Long permissionId;
 
+    /**
+     * 创建时间
+     * 
+     */
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-
-    public Integer getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(Integer permissionId) {
-        this.permissionId = permissionId;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 }

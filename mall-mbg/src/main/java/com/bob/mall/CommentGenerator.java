@@ -5,13 +5,14 @@ import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.JavaElement;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.mybatis.generator.internal.util.StringUtility;
 
 import java.util.Properties;
 
 public class CommentGenerator extends DefaultCommentGenerator {
-    private boolean addRemarkComments = false;
+    private boolean addRemarkComments = true;
     private static final String EXAMPLE_SUFFIX="Example";
     private static final String API_MODEL_PROPERTY_FULL_CLASS_NAME="io.swagger.annotations.ApiModelProperty";
 
@@ -33,7 +34,7 @@ public class CommentGenerator extends DefaultCommentGenerator {
         String remarks = introspectedColumn.getRemarks();
         //根据参数和备注信息判断是否添加备注信息
         if(addRemarkComments&&StringUtility.stringHasValue(remarks)){
-//            addFieldJavaDoc(field, remarks);
+            addFieldJavaDoc(field, remarks);
             //数据库中特殊字符需要转义
             if(remarks.contains("\"")){
                 remarks = remarks.replace("\"","'");
@@ -58,12 +59,28 @@ public class CommentGenerator extends DefaultCommentGenerator {
         field.addJavaDocLine(" */");
     }
 
+    protected void addJavadocTag(JavaElement javaElement,
+                                 boolean markAsDoNotDelete) {
+//        javaElement.addJavaDocLine(" *"); //$NON-NLS-1$
+        StringBuilder sb = new StringBuilder();
+        sb.append(" * "); //$NON-NLS-1$
+        if (markAsDoNotDelete) {
+            sb.append(" do_not_delete_during_merge"); //$NON-NLS-1$
+        }
+        String s = getDateString();
+        if (s != null) {
+            sb.append(' ');
+            sb.append(s);
+        }
+        javaElement.addJavaDocLine(sb.toString());
+    }
+
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
         super.addJavaFileComment(compilationUnit);
         //只在model中添加swagger注解类的导入
-/*        if(!compilationUnit.isJavaInterface()&&!compilationUnit.getType().getFullyQualifiedName().contains(EXAMPLE_SUFFIX)){
+        if(!compilationUnit.isJavaInterface()&&!compilationUnit.getType().getFullyQualifiedName().contains(EXAMPLE_SUFFIX)){
             compilationUnit.addImportedType(new FullyQualifiedJavaType(API_MODEL_PROPERTY_FULL_CLASS_NAME));
-        }*/
+        }
     }
 }

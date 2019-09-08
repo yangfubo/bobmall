@@ -6,7 +6,6 @@
         <groupId>com.bob</groupId>
         <artifactId>mall</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mall</groupId>
     <artifactId>mall-admin</artifactId>
@@ -20,7 +19,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.bob.mall</groupId>
+            <groupId>com.bob</groupId>
             <artifactId>mall-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

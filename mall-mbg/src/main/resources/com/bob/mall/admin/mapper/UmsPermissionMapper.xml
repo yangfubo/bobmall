@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bob.mall.admin.mapper.UmsPermissionMapper">
   <resultMap id="BaseResultMap" type="com.bob.mall.admin.model.UmsPermission">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="type" jdbcType="INTEGER" property="type" />
@@ -88,15 +88,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from ums_permission
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from ums_permission
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.bob.mall.admin.model.UmsPermissionExample">
     delete from ums_permission
@@ -105,18 +105,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bob.mall.admin.model.UmsPermission">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into ums_permission (pid, name, code, 
       type, uri, sort, status, 
       create_time, update_time)
-    values (#{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+    values (#{pid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bob.mall.admin.model.UmsPermission">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into ums_permission
@@ -151,7 +151,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="pid != null">
-        #{pid,jdbcType=INTEGER},
+        #{pid,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -189,10 +189,10 @@
     update ums_permission
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=INTEGER},
+        pid = #{record.pid,jdbcType=BIGINT},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -225,8 +225,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update ums_permission
-    set id = #{record.id,jdbcType=INTEGER},
-      pid = #{record.pid,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=BIGINT},
+      pid = #{record.pid,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
@@ -243,7 +243,7 @@
     update ums_permission
     <set>
       <if test="pid != null">
-        pid = #{pid,jdbcType=INTEGER},
+        pid = #{pid,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -270,11 +270,11 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bob.mall.admin.model.UmsPermission">
     update ums_permission
-    set pid = #{pid,jdbcType=INTEGER},
+    set pid = #{pid,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
@@ -283,6 +283,6 @@
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

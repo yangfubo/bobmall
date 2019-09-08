@@ -2,9 +2,13 @@ package com.bob.mall.admin.mapper;
 
 import com.bob.mall.admin.model.UmsRole;
 import com.bob.mall.admin.model.UmsRoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+/**
+* Created by Mybatis Generator on 2019/09/08
+*/
 public interface UmsRoleMapper {
     long countByExample(UmsRoleExample example);
 

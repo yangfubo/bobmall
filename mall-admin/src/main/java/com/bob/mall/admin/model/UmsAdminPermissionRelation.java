@@ -5,12 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UmsUserRoleRelation {
+public class UmsAdminPermissionRelation {
     /**
      * 主键id
      * 
@@ -19,23 +17,23 @@ public class UmsUserRoleRelation {
     private Long id;
 
     /**
-     * 后台用户id
+     * 管理员id
      * 
      */
-    @ApiModelProperty(value = "后台用户id")
+    @ApiModelProperty(value = "管理员id")
     private Long adminId;
 
     /**
-     * 角色id
+     * 权限id
      * 
      */
-    @ApiModelProperty(value = "角色id")
-    private Long roleId;
+    @ApiModelProperty(value = "权限id")
+    private Long permissionId;
 
     /**
-     * 创建时间
+     * 类型（0减权限，1加权限）
      * 
      */
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value = "类型（0减权限，1加权限）")
+    private Integer type;
 }

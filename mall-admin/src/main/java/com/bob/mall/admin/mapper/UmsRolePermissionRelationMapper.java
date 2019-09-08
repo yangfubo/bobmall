@@ -2,15 +2,19 @@ package com.bob.mall.admin.mapper;
 
 import com.bob.mall.admin.model.UmsRolePermissionRelation;
 import com.bob.mall.admin.model.UmsRolePermissionRelationExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+/**
+* Created by Mybatis Generator on 2019/09/08
+*/
 public interface UmsRolePermissionRelationMapper {
     long countByExample(UmsRolePermissionRelationExample example);
 
     int deleteByExample(UmsRolePermissionRelationExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(UmsRolePermissionRelation record);
 
@@ -18,7 +22,7 @@ public interface UmsRolePermissionRelationMapper {
 
     List<UmsRolePermissionRelation> selectByExample(UmsRolePermissionRelationExample example);
 
-    UmsRolePermissionRelation selectByPrimaryKey(Integer id);
+    UmsRolePermissionRelation selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") UmsRolePermissionRelation record, @Param("example") UmsRolePermissionRelationExample example);
 
