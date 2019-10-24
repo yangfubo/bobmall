@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UmsRoleMapper">
-  <resultMap id="BaseResultMap" type="UmsRole">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
+<mapper namespace="UmsAdminMapper">
+  <resultMap id="BaseResultMap" type="com.bob.mall.model.UmsAdmin">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -69,15 +73,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, code, description, status, create_time, update_time
+    id, username, password, phone, icon, email, nick_name, remark, status, create_time, 
+    update_time
   </sql>
-  <select id="selectByExample" parameterType="UmsRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="UmsAdminExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ums_role
+    from ums_admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,47 +90,61 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ums_role
-    where id = #{id,jdbcType=INTEGER}
+    from ums_admin
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from ums_role
-    where id = #{id,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ums_admin
+    where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="UmsRoleExample">
-    delete from ums_role
+  <delete id="deleteByExample" parameterType="UmsAdminExample">
+    delete from ums_admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="UmsRole">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insert" parameterType="UmsAdmin">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_role (name, code, description, 
-      status, create_time, update_time
-      )
-    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+    insert into ums_admin (username, password, phone, 
+      icon, email, nick_name, 
+      remark, status, create_time, 
+      update_time)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="UmsRole">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="UmsAdmin">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_role
+    insert into ums_admin
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        name,
+      <if test="username != null">
+        username,
       </if>
-      <if test="code != null">
-        code,
+      <if test="password != null">
+        password,
       </if>
-      <if test="description != null">
-        description,
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="remark != null">
+        remark,
       </if>
       <if test="status != null">
         status,
@@ -138,14 +157,26 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -158,26 +189,38 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="UmsRoleExample" resultType="java.lang.Long">
-    select count(*) from ums_role
+  <select id="countByExample" parameterType="UmsAdminExample" resultType="java.lang.Long">
+    select count(*) from ums_admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update ums_role
+    update ums_admin
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -194,11 +237,15 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update ums_role
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
+    update ums_admin
+    set id = #{record.id,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
@@ -206,17 +253,29 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="UmsRole">
-    update ums_role
+  <update id="updateByPrimaryKeySelective" parameterType="UmsAdmin">
+    update ums_admin
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -228,16 +287,20 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="UmsRole">
-    update ums_role
-    set name = #{name,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="UmsAdmin">
+    update ums_admin
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

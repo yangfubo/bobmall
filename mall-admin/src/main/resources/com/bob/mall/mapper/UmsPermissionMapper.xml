@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UmsRoleMapper">
-  <resultMap id="BaseResultMap" type="UmsRole">
+<mapper namespace="UmsPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.bob.mall.model.UmsPermission">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -69,15 +72,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, code, description, status, create_time, update_time
+    id, pid, name, code, type, uri, sort, status, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="UmsRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="UmsPermissionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ums_role
+    from ums_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,44 +91,53 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ums_role
+    from ums_permission
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from ums_role
+    delete from ums_permission
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="UmsRoleExample">
-    delete from ums_role
+  <delete id="deleteByExample" parameterType="UmsPermissionExample">
+    delete from ums_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="UmsRole">
+  <insert id="insert" parameterType="UmsPermission">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_role (name, code, description, 
-      status, create_time, update_time
-      )
-    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+    insert into ums_permission (pid, name, code, 
+      type, uri, sort, status, 
+      create_time, update_time)
+    values (#{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="UmsRole">
+  <insert id="insertSelective" parameterType="UmsPermission">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_role
+    insert into ums_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
       <if test="name != null">
         name,
       </if>
       <if test="code != null">
         code,
       </if>
-      <if test="description != null">
-        description,
+      <if test="type != null">
+        type,
+      </if>
+      <if test="uri != null">
+        uri,
+      </if>
+      <if test="sort != null">
+        sort,
       </if>
       <if test="status != null">
         status,
@@ -138,14 +150,23 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -158,17 +179,20 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="UmsRoleExample" resultType="java.lang.Long">
-    select count(*) from ums_role
+  <select id="countByExample" parameterType="UmsPermissionExample" resultType="java.lang.Long">
+    select count(*) from ums_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update ums_role
+    update ums_permission
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -176,8 +200,14 @@
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.uri != null">
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -194,11 +224,14 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update ums_role
+    update ums_permission
     set id = #{record.id,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      uri = #{record.uri,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
       status = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
@@ -206,17 +239,26 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="UmsRole">
-    update ums_role
+  <update id="updateByPrimaryKeySelective" parameterType="UmsPermission">
+    update ums_permission
     <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uri != null">
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -230,11 +272,14 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="UmsRole">
-    update ums_role
-    set name = #{name,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="UmsPermission">
+    update ums_permission
+    set pid = #{pid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      uri = #{uri,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
