@@ -5,8 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.Assert;
 
+@ActiveProfiles("sit")
 public class UmsAdminServiceTest extends BaseTest {
 
     @Autowired
