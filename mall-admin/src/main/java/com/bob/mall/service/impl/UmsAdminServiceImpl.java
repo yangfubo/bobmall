@@ -2,14 +2,10 @@ package com.bob.mall.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.bob.mall.mapper.UmsAdminMapper;
-import com.bob.mall.mapper.UmsAdminPermissionRelationMapper;
-import com.bob.mall.mapper.UmsUserRoleRelationMapper;
 import com.bob.mall.model.UmsAdmin;
 import com.bob.mall.model.UmsAdminExample;
 import com.bob.mall.model.UmsPermission;
 import com.bob.mall.service.UmsAdminService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +22,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Autowired
     private UmsAdminMapper umsAdminMapper;
 
-    @Autowired
-    private UmsUserRoleRelationMapper umsUserRoleRelationMapper;
 
 
     @Override
