@@ -23,6 +23,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
+        <jjwt.version>0.9.0</jjwt.version>
         <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
         <mybatis-spring-boot-starter.version>2.1.0</mybatis-spring-boot-starter.version>
         <pagehelper-spring-boot-starter.version>1.2.10</pagehelper-spring-boot-starter.version>
@@ -38,6 +39,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.bob</groupId>
+                <artifactId>mall-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>

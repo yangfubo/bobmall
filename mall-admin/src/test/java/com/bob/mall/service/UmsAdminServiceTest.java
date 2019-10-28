@@ -27,6 +27,6 @@ public class UmsAdminServiceTest extends BaseTest {
     @Test
     public void getByUsernameTest(){
         Mockito.when(umsAdminMapper.selectByExample(Mockito.any())).thenReturn(new ArrayList<>());
-        Assert.notNull(umsAdminService.get("admin"), "根据用户名获取管理员信息失败");
+        Assert.notNull(umsAdminService.getByUsername("admin"), "根据用户名获取管理员信息失败");
     }
 }
