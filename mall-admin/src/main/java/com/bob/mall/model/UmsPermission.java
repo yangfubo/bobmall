@@ -33,11 +33,11 @@ public class UmsPermission {
     private String name;
 
     /**
-     * 编码
+     * 权限值
      * 
      */
-    @ApiModelProperty(value = "编码")
-    private String code;
+    @ApiModelProperty(value = "权限值")
+    private String value;
 
     /**
      * 权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）
@@ -61,10 +61,10 @@ public class UmsPermission {
     private Integer sort;
 
     /**
-     * 状态（0禁用，1启用）
+     * 状态（0->禁用，1->启用）
      * 
      */
-    @ApiModelProperty(value = "状态（0禁用，1启用）")
+    @ApiModelProperty(value = "状态（0->禁用，1->启用）")
     private Integer status;
 
     /**

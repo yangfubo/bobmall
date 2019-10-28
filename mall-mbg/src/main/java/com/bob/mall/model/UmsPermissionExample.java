@@ -295,73 +295,73 @@ public class UmsPermissionExample {
             return (Criteria) this;
         }
 
-        public Criteria andCodeIsNull() {
-            addCriterion("code is null");
+        public Criteria andValueIsNull() {
+            addCriterion("value is null");
             return (Criteria) this;
         }
 
-        public Criteria andCodeIsNotNull() {
-            addCriterion("code is not null");
+        public Criteria andValueIsNotNull() {
+            addCriterion("value is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCodeEqualTo(String value) {
-            addCriterion("code =", value, "code");
+        public Criteria andValueEqualTo(String value) {
+            addCriterion("value =", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotEqualTo(String value) {
-            addCriterion("code <>", value, "code");
+        public Criteria andValueNotEqualTo(String value) {
+            addCriterion("value <>", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeGreaterThan(String value) {
-            addCriterion("code >", value, "code");
+        public Criteria andValueGreaterThan(String value) {
+            addCriterion("value >", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("code >=", value, "code");
+        public Criteria andValueGreaterThanOrEqualTo(String value) {
+            addCriterion("value >=", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLessThan(String value) {
-            addCriterion("code <", value, "code");
+        public Criteria andValueLessThan(String value) {
+            addCriterion("value <", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLessThanOrEqualTo(String value) {
-            addCriterion("code <=", value, "code");
+        public Criteria andValueLessThanOrEqualTo(String value) {
+            addCriterion("value <=", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLike(String value) {
-            addCriterion("code like", value, "code");
+        public Criteria andValueLike(String value) {
+            addCriterion("value like", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotLike(String value) {
-            addCriterion("code not like", value, "code");
+        public Criteria andValueNotLike(String value) {
+            addCriterion("value not like", value, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeIn(List<String> values) {
-            addCriterion("code in", values, "code");
+        public Criteria andValueIn(List<String> values) {
+            addCriterion("value in", values, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotIn(List<String> values) {
-            addCriterion("code not in", values, "code");
+        public Criteria andValueNotIn(List<String> values) {
+            addCriterion("value not in", values, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeBetween(String value1, String value2) {
-            addCriterion("code between", value1, value2, "code");
+        public Criteria andValueBetween(String value1, String value2) {
+            addCriterion("value between", value1, value2, "value");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotBetween(String value1, String value2) {
-            addCriterion("code not between", value1, value2, "code");
+        public Criteria andValueNotBetween(String value1, String value2) {
+            addCriterion("value not between", value1, value2, "value");
             return (Criteria) this;
         }
 

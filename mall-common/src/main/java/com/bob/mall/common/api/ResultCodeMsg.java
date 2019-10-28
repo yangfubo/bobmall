@@ -11,9 +11,9 @@ public enum ResultCodeMsg implements CodeMsg {
 
     SUCCESS(200, ResultConstants.SUCCESS_MSG),
     FAILED(500, ResultConstants.SYSTEM_EXCEPTION_MSG),
-    VALIDATE_FAILED(4004, "参数检验失败"),
-    UNAUTHORIZED(4001, "暂未登录或token已经过期"),
-    FORBIDDEN(4003, "没有相关权限");
+    VALIDATE_FAILED(400, "参数检验失败"),
+    UNAUTHORIZED(401, "暂未登录或token已经过期"),
+    FORBIDDEN(403, "没有相关权限");
 
     /**
      * 编码

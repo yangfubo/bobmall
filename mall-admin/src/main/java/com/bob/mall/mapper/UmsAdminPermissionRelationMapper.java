@@ -6,9 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
-* Created by Mybatis Generator on 2019/09/08
-*/
 public interface UmsAdminPermissionRelationMapper {
     long countByExample(UmsAdminPermissionRelationExample example);
 

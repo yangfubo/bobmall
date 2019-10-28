@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UmsAdminPermissionRelation {
+public class UmsAdminRoleRelation {
     /**
      * 主键id
      * 
@@ -19,25 +19,18 @@ public class UmsAdminPermissionRelation {
     private Long id;
 
     /**
-     * 管理员id
+     * 后台用户id
      * 
      */
-    @ApiModelProperty(value = "管理员id")
+    @ApiModelProperty(value = "后台用户id")
     private Long adminId;
 
     /**
-     * 权限id
+     * 角色id
      * 
      */
-    @ApiModelProperty(value = "权限id")
-    private Long permissionId;
-
-    /**
-     * 类型（0减权限，1加权限）
-     * 
-     */
-    @ApiModelProperty(value = "类型（0减权限，1加权限）")
-    private Integer type;
+    @ApiModelProperty(value = "角色id")
+    private Long roleId;
 
     /**
      * 创建时间
