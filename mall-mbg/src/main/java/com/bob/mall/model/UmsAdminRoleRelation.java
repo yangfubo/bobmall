@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UmsUserRoleRelation {
+public class UmsAdminRoleRelation {
     /**
      * 主键id
      * 

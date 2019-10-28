@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UmsUserRoleRelationExample {
+public class UmsAdminRoleRelationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UmsUserRoleRelationExample() {
+    public UmsAdminRoleRelationExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

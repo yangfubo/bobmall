@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bob.mall.mapper.UmsAdminRoleRelationMapper">
   <resultMap id="BaseResultMap" type="com.bob.mall.model.UmsAdminRoleRelation">
-    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="admin_id" jdbcType="BIGINT" property="adminId" />
-    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +74,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ums_admin_role_relation
+    from ums_user_role_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,36 +82,36 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ums_admin_role_relation
-    where id = #{id,jdbcType=BIGINT}
+    from ums_user_role_relation
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from ums_admin_role_relation
-    where id = #{id,jdbcType=BIGINT}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ums_user_role_relation
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.bob.mall.model.UmsAdminRoleRelationExample">
-    delete from ums_admin_role_relation
+    delete from ums_user_role_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.bob.mall.model.UmsAdminRoleRelation">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_admin_role_relation (admin_id, role_id, create_time
+    insert into ums_user_role_relation (admin_id, role_id, create_time
       )
-    values (#{adminId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}
+    values (#{adminId,jdbcType=BIGINT}, #{roleId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.bob.mall.model.UmsAdminRoleRelation">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_admin_role_relation
+    insert into ums_user_role_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="adminId != null">
         admin_id,
@@ -128,7 +128,7 @@
         #{adminId,jdbcType=BIGINT},
       </if>
       <if test="roleId != null">
-        #{roleId,jdbcType=BIGINT},
+        #{roleId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -136,22 +136,22 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.bob.mall.model.UmsAdminRoleRelationExample" resultType="java.lang.Long">
-    select count(*) from ums_admin_role_relation
+    select count(*) from ums_user_role_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update ums_admin_role_relation
+    update ums_user_role_relation
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.adminId != null">
         admin_id = #{record.adminId,jdbcType=BIGINT},
       </if>
       <if test="record.roleId != null">
-        role_id = #{record.roleId,jdbcType=BIGINT},
+        role_id = #{record.roleId,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -162,35 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update ums_admin_role_relation
-    set id = #{record.id,jdbcType=BIGINT},
+    update ums_user_role_relation
+    set id = #{record.id,jdbcType=INTEGER},
       admin_id = #{record.adminId,jdbcType=BIGINT},
-      role_id = #{record.roleId,jdbcType=BIGINT},
+      role_id = #{record.roleId,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.bob.mall.model.UmsAdminRoleRelation">
-    update ums_admin_role_relation
+    update ums_user_role_relation
     <set>
       <if test="adminId != null">
         admin_id = #{adminId,jdbcType=BIGINT},
       </if>
       <if test="roleId != null">
-        role_id = #{roleId,jdbcType=BIGINT},
+        role_id = #{roleId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bob.mall.model.UmsAdminRoleRelation">
-    update ums_admin_role_relation
+    update ums_user_role_relation
     set admin_id = #{adminId,jdbcType=BIGINT},
-      role_id = #{roleId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
